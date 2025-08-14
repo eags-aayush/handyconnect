@@ -9,7 +9,7 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          npm ci
+          npm install --include=dev
       - name: Build React (Vite) app
         script: |
           npm run build
