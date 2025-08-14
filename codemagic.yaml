@@ -5,11 +5,11 @@ workflows:
     environment:
       node: 20
       vars:
-        NODE_ENV: production
+        NODE_ENV: development  # ensures devDependencies are installed
     scripts:
       - name: Install dependencies
         script: |
-          npm install --include=dev
+          npm ci  # installs dependencies exactly from package-lock.json, including devDependencies
       - name: Build React (Vite) app
         script: |
           npm run build
@@ -21,7 +21,7 @@ workflows:
           cd android
           ./gradlew assembleDebug
     artifacts:
-      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/*.apk  # path to the APK
     publishing:
       email:
         recipients:
