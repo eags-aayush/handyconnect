@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  transition: color 1s ease-in-out, background-color 1s ease-in-out, border-color 1s ease-in-out;
+  font-family: "Inter", sans-serif;
+}
