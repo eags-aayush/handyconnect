@@ -15,7 +15,7 @@ workflows:
           npm run build
       - name: Copy build to Capacitor Android
         script: |
-          npx cap copy android
+          ./node_modules/.bin/cap copy android
       - name: Build APK using Gradle
         script: |
           cd android
