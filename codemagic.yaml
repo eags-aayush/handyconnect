@@ -4,10 +4,13 @@ workflows:
     max_build_duration: 60
     environment:
       node: 20
+      jdk: openjdk_17
+      vars:
+        NODE_ENV: development
     scripts:
       - name: Install dependencies
         script: |
-          npm ci  # installs everything from package-lock.json including Capacitor
+          npm ci
       - name: Build React (Vite) app
         script: |
           npm run build
