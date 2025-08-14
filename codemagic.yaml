@@ -4,9 +4,9 @@ workflows:
     max_build_duration: 60
     environment:
       node: 20
-      jdk: openjdk_17
       vars:
         NODE_ENV: development
+      # remove `jdk:` field entirely
     scripts:
       - name: Install dependencies
         script: |
@@ -17,6 +17,12 @@ workflows:
       - name: Copy build to Capacitor Android
         script: |
           npx cap copy android
+      - name: Install JDK 17
+        script: |
+          brew install openjdk@17
+          sudo ln -sfn /usr/local/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+          export JAVA_HOME=/usr/local/opt/openjdk@17
+          java -version
       - name: Build APK using Gradle
         script: |
           cd android
