@@ -1,0 +1,23 @@
+workflows:
+  android-capacitor:
+    name: Build Android APK
+    max_build_duration: 60
+    environment:
+      vars:
+        NODE_ENV: production
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+      - name: Build React app
+        script: |
+          npm run build
+      - name: Copy build to Android
+        script: |
+          npx cap copy android
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
