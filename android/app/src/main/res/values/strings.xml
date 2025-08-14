@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">handyconnect</string>
+    <string name="title_activity_main">handyconnect</string>
+    <string name="package_name">com.handyconnect.app</string>
+    <string name="custom_url_scheme">com.handyconnect.app</string>
+</resources>
