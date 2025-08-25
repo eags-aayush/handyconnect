@@ -1,0 +1,88 @@
+const jobsData = [
+  {
+    id: 1,
+    name: "Ravi Sharma",
+    title: "Professional Plumber for Sink & Tap Repairs",
+    category: "Plumber",
+    experience: "Intermediate",
+    verified: true,
+    languages: ["English", "Hindi"],
+    price: 500,
+    rating: 4.5,
+    description:
+      "I have 5+ years of experience fixing leaks, taps, and bathroom fittings. Quick and reliable plumbing service at your doorstep.",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    id: 2,
+    name: "Amit Kumar",
+    title: "Affordable Electrician for Fan & Light Installation",
+    category: "Electrician",
+    experience: "Beginner",
+    verified: false,
+    languages: ["Hindi"],
+    price: 300,
+    rating: 4.0,
+    description:
+      "I provide budget-friendly electrical services including fan, light, and basic wiring installation for homes and shops.",
+    image: "https://randomuser.me/api/portraits/men/12.jpg",
+  },
+  {
+    id: 3,
+    name: "Suresh Iyer",
+    title: "Expert House Painter – Premium Finish",
+    category: "Painter",
+    experience: "Expert",
+    verified: true,
+    languages: ["English", "Tamil"],
+    price: 7000,
+    rating: 4.8,
+    description:
+      "Over 10 years of professional painting experience. Specialize in 2BHK/3BHK interiors with premium emulsion paints and neat finish.",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
+  },
+  {
+    id: 4,
+    name: "Neha Gupta",
+    title: "House Cleaning Services – Deep & Daily",
+    category: "Cleaner",
+    experience: "Intermediate",
+    verified: false,
+    languages: ["English", "Hindi"],
+    price: 800,
+    rating: 3.9,
+    description:
+      "I offer professional deep cleaning and regular cleaning services for homes. Flexible timings and customer-friendly approach.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    id: 5,
+    name: "Arjun Mehta",
+    title: "Carpenter for Furniture Repairs & Custom Work",
+    category: "Carpenter",
+    experience: "Expert",
+    verified: true,
+    languages: ["English", "Hindi"],
+    price: 1500,
+    rating: 4.7,
+    description:
+      "Skilled carpenter with 12+ years of experience in furniture repair, polishing, and custom wooden work.",
+    image: "https://randomuser.me/api/portraits/men/28.jpg",
+  },
+  {
+    id: 6,
+    name: "Pooja Singh",
+    title: "Beautician – Bridal & Party Makeup",
+    category: "Beautician",
+    experience: "Expert",
+    verified: true,
+    languages: ["English", "Hindi"],
+    price: 2000,
+    rating: 4.9,
+    description:
+      "Certified beautician with 8 years of experience. Bridal, party, and occasion makeup using premium products.",
+    image: "https://randomuser.me/api/portraits/women/21.jpg",
+  },
+];
+
+export default jobsData;
