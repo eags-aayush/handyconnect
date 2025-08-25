@@ -68,7 +68,7 @@ const Profile = () => {
           <span className="uppercase text-gray-400 text-xs font-semibold tracking-wider">
             Contact Us
           </span>
-          <ul className="mt-3 bg-white shadow-sm rounded-xl overflow-hidden divide-y divide-gray-100">
+          <ul className="flex flex-col mt-3 bg-white shadow-sm rounded-xl overflow-hidden divide-y divide-gray-100">
             <a className="py-4 px-4 font-medium text-gray-700" href="tel:+918420996300">
               +91 8420996300
             </a>
