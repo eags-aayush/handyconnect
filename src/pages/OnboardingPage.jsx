@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import Navbar from "../components/Navbar";
 
 export default function OnboardingPage() {
 
@@ -44,6 +45,7 @@ export default function OnboardingPage() {
                     </div>
                 </div>
             </div>
+            <Navbar />
         </>
     )
 }

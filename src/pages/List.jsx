@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { motion } from "framer-motion";
 
-const work = ["Plumbing", "Electrical", "Carpentry", "Pest Control"]
+const work = ["Plumbing", "Electrical", "Carpentry", "Pest Control"];
 
 const List = () => {
-
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [price, setPrice] = useState("")
-  const [location, setLocation] = useState("")
-  const [selectedWork, setSelectedWork] = useState("")
-  const [submitting, setSubmitting] = useState(false)
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [location, setLocation] = useState("");
+  const [selectedWork, setSelectedWork] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,39 +28,59 @@ const List = () => {
       setSelectedWork("");
       navigate("/search");
     }, 2000);
-  }
+  };
 
   return (
     <>
-      <div className='flex flex-col justify-center items-center px-5 pb-25'>
-        <span className='font-bold text-lg mb-10 pt-5'>List Your Services</span>
+      <div className="flex flex-col items-center px-5 py-10 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+        
+        {/* Header */}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl font-extrabold text-center mb-10 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-tight"
+        >
+          List Your Service
+        </motion.h1>
 
-        <form onSubmit={submitHandler}>
-          <div className='flex flex-col gap-5'>
-            {/* Service name */}
+        {/* Card */}
+        <motion.form
+          onSubmit={submitHandler}
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          className="w-full max-w-lg bg-white shadow-2xl rounded-3xl p-8 space-y-8 border border-gray-100"
+        >
+          {/* Section: Basic Info */}
+          <div className="space-y-4">
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Basic Info</p>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Service Name (e.g., Plumbing, Electrical)"
-              className="bg-gray-200 rounded-md p-2"
+              placeholder="Service Name"
+              className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
               required
             />
 
-            {/* Description */}
             <textarea
-              rows="5"
+              rows="4"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe your requirement in detail"
-              className="bg-gray-200 rounded-md p-2"
+              placeholder="Describe your service"
+              className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
               required
             />
+          </div>
 
-            {/* Work type radio buttons */}
+          {/* Section: Work Info */}
+          <div>
+            <p className="mb-3 text-sm font-semibold text-gray-500 uppercase tracking-wide">
+              Work Info
+            </p>
             <div className="flex gap-3 flex-wrap">
               {work.map((item, index) => (
-                <label key={index} className="cursor-pointer">
+                <label key={index} className="cursor-pointer mb-5">
                   <input
                     type="radio"
                     name="work"
@@ -69,64 +89,66 @@ const List = () => {
                     className="hidden peer"
                     required
                   />
-                  <span className="font-semibold text-md px-2 py-1 bg-gray-200 rounded-lg peer-checked:bg-blue-500 peer-checked:text-white">
+                  <span className="font-medium text-sm px-5 py-2.5 rounded-full border border-gray-200 bg-gray-50 peer-checked:bg-gradient-to-r peer-checked:from-blue-600 peer-checked:to-indigo-600 peer-checked:text-white transition shadow-sm">
                     {item}
                   </span>
                 </label>
               ))}
             </div>
+          </div>
 
-            {/* Price */}
+          {/* Section: Pricing & Location */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <input
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Price"
-              className="bg-gray-200 rounded-md p-2"
+              className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
               required
             />
-
-            {/* Location */}
             <input
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Location"
-              className="bg-gray-200 rounded-md p-2"
+              className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
               required
             />
+          </div>
 
-            {/* Preferred Date and Time */}
-            <div className="flex gap-4">
-              <div className="flex flex-col">
-                <label htmlFor="date" className="mb-1 text-sm font-medium">Preferred Date</label>
-                <input
-                  id="date"
-                  type="date"
-                  className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label htmlFor="time" className="mb-1 text-sm font-medium">Preferred Time</label>
-                <input
-                  id="time"
-                  type="time"
-                  className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+          {/* Section: Schedule */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex flex-col">
+              <label className="mb-1 text-sm font-medium text-gray-600">
+                Preferred Date
+              </label>
+              <input
+                type="date"
+                className="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+              />
             </div>
+            <div className="flex flex-col">
+              <label className="mb-1 text-sm font-medium text-gray-600">
+                Preferred Time
+              </label>
+              <input
+                type="time"
+                className="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+              />
+            </div>
+          </div>
 
-
-
-          <button
+          {/* Submit Button */}
+          <motion.button
+            whileTap={{ scale: 0.97 }}
             type="submit"
             disabled={submitting}
-            className="font-bold bg-blue-500 text-white rounded-md p-2 flex items-center justify-center min-w-[100px]"
+            className="w-full font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full py-4 flex items-center justify-center shadow-md hover:shadow-xl transition disabled:opacity-70"
           >
             {submitting ? (
               <svg
-                className="animate-spin h-5 w-5 text-white"
+                className="animate-spin h-6 w-6 text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -148,14 +170,13 @@ const List = () => {
             ) : (
               "Submit"
             )}
-          </button>
-
+          </motion.button>
+        </motion.form>
       </div>
-    </form >
-      </div >
-  <Navbar />
-    </>
-  )
-}
 
-export default List
+      <Navbar />
+    </>
+  );
+};
+
+export default List;
