@@ -13,7 +13,8 @@ function App() {
   return (
       <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<OnboardingPage />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/list" element={<List />} />
             <Route path="/search" element={<Search />} />
             <Route path="/notification" element={<Notification />} />

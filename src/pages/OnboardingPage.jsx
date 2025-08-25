@@ -39,7 +39,7 @@ export default function OnboardingPage() {
                     <div className="flex justify-center">
                         <div className="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3">
                             <button onClick={loginHandler} className="flex min-w-[84px] max-w-[480px] items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#0d80f2] text-white text-base font-bold w-full">
-                                <span className="truncate">Get Started</span>
+                                <Link to="/home">Get Started</Link>
                             </button>
                         </div>
                     </div>
