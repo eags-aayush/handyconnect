@@ -32,24 +32,23 @@ const List = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center px-5 py-10 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
+      <div className="flex flex-col gap-6 pb-32">
         
-        {/* Header */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-extrabold text-center mb-10 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-tight"
-        >
-          List Your Service
-        </motion.h1>
+        {/* Header - same as Notification page */}
+        <section className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 rounded-b-3xl shadow-md pb-6">
+          <span className="font-semibold text-gray-600 text-sm mt-4">
+            List Your Service
+          </span>
+        </section>
 
+        <section className="px-5">
         {/* Card */}
         <motion.form
           onSubmit={submitHandler}
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="w-full max-w-lg bg-white shadow-2xl rounded-3xl p-8 space-y-8 border border-gray-100"
+          className="mx-auto p-8 px-5 w-full max-w-lg bg-white shadow-2xl rounded-3xl space-y-8 border border-gray-100"
         >
           {/* Section: Basic Info */}
           <div className="space-y-4">
@@ -172,6 +171,7 @@ const List = () => {
             )}
           </motion.button>
         </motion.form>
+        </section>
       </div>
 
       <Navbar />
