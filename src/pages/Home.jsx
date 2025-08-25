@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import pfp from "/pfp.jpg";
 import { motion } from "framer-motion";
@@ -24,11 +25,16 @@ const Home = () => {
     <>
       <div className="flex flex-col gap-6 pb-32">
         {/* Header */}
-        <section className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 rounded-b-3xl shadow-md pb-6">
+        <motion.section
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 80, damping: 15 }}
+          className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 rounded-b-3xl shadow-md pb-6"
+        >
           <span className="font-semibold text-gray-600 text-sm mt-4">
             HandyConnect
           </span>
-        </section>
+        </motion.section>
 
         {/* Welcome User */}
         <section className="px-6 flex items-center gap-4">
@@ -50,10 +56,10 @@ const Home = () => {
           <div className="grid grid-cols-3 gap-4">
             <motion.button
               whileTap={{ scale: 0.95 }}
-              className="flex flex-col items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl shadow-md py-4"
+              className="flex flex-col items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 rounded-2xl shadow-sm py-4"
             >
               <CalendarCheck size={22} />
-              <span className="text-xs font-semibold">Book Service</span>
+              <Link className="text-xs font-semibold" to="/search">Book Service</Link>
             </motion.button>
             <motion.button
               whileTap={{ scale: 0.95 }}
@@ -67,7 +73,7 @@ const Home = () => {
               className="flex flex-col items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 rounded-2xl shadow-sm py-4"
             >
               <ListPlus size={22} />
-              <span className="text-xs font-semibold">List Service</span>
+              <Link className="text-xs font-semibold" to="/list">List Service</Link>
             </motion.button>
           </div>
         </section>
