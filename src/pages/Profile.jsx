@@ -72,9 +72,9 @@ const Profile = () => {
             <a className="py-4 px-4 font-medium text-gray-700" href="tel:+918420996300">
               +91 8420996300
             </a>
-            <li className="py-4 px-4 font-medium text-gray-700">
+            <a className="py-4 px-4 font-medium text-gray-700" href="mailto:contact@handyconnect.in">
               contact@handyconnect.in
-            </li>
+            </a>
           </ul>
         </section>
       </div>
