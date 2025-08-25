@@ -42,48 +42,47 @@ const Search = () => {
 
   // Filter + Search + Sort logic
   const filteredJobs = useMemo(() => {
-    let results = jobsData;
+  let results = jobsData;
 
-    // Search filter
-    if (searchTerm.trim()) {
-      results = results.filter(
-        (job) =>
-          job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          job.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          job.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+  // Search filter
+  if (searchTerm.trim()) {
+    results = results.filter(
+      (job) =>
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 
-    // Experience filter
-    if (filters.experience) {
-      results = results.filter((job) => job.experience === filters.experience);
-    }
+  // Experience filter
+  if (filters.experience) {
+    results = results.filter((job) => job.experience === filters.experience);
+  }
 
-    // Verification filter
-    if (filters.verified !== null) {
-      results = results.filter((job) => job.verified === filters.verified);
-    }
+  // Verification filter
+  if (filters.verified !== null) {
+    results = results.filter((job) => job.verified === filters.verified);
+  }
 
-    // Languages filter (OR condition)
-    if (filters.languages.length > 0) {
-      results = results.filter((job) =>
-        job.languages.some((lang) => filters.languages.includes(lang))
-      );
-    }
+  // Languages filter (OR condition now)
+  if (filters.languages.length > 0) {
+    results = results.filter((job) =>
+      job.languages.some((lang) => filters.languages.includes(lang))
+    );
+  }
 
-    // Sorting
-    if (sortBy === "priceLow") {
-      results = [...results].sort((a, b) => a.price - b.price);
-    } else if (sortBy === "priceHigh") {
-      results = [...results].sort((a, b) => b.price - a.price);
-    } else if (sortBy === "rating") {
-      results = [...results].sort((a, b) => b.rating - a.rating);
-    } else if (sortBy === "newest") {
-      results = [...results].sort((a, b) => b.id - a.id);
-    }
+  // Sorting
+  if (sortBy === "priceLow") {
+    results = [...results].sort((a, b) => a.price - b.price);
+  } else if (sortBy === "priceHigh") {
+    results = [...results].sort((a, b) => b.price - a.price);
+  } else if (sortBy === "rating") {
+    results = [...results].sort((a, b) => b.rating - a.rating);
+  } else if (sortBy === "newest") {
+    results = [...results].sort((a, b) => b.id - a.id); // just by id for demo
+  }
 
-    return results;
-  }, [searchTerm, filters, sortBy]);
+  return results;
+}, [searchTerm, filters, sortBy]);
 
   return (
     <>
@@ -234,7 +233,119 @@ const Search = () => {
       </div>
 
       {/* Filter Panel */}
-      {/* (unchanged, keeping your existing filter modal code) */}
+      <AnimatePresence>
+        {showFilter && (
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl rounded-t-3xl p-6 z-50 max-h-[80vh] overflow-y-auto"
+          >
+            <h2 className="text-lg font-semibold text-gray-700 mb-4">
+              Filters
+            </h2>
+
+            {/* Experience */}
+            <div className="mb-4">
+              <p className="text-sm font-medium text-gray-600 mb-2">Experience</p>
+              <div className="flex gap-3">
+                {["Beginner", "Intermediate", "Expert"].map((level) => (
+                  <button
+                    key={level}
+                    onClick={() =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        experience: prev.experience === level ? "" : level,
+                      }))
+                    }
+                    className={`px-4 py-2 rounded-full text-sm border shadow-sm ${
+                      filters.experience === level
+                        ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+                        : "bg-gray-50 text-gray-700"
+                    }`}
+                  >
+                    {level}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Verification */}
+            <div className="mb-4">
+              <p className="text-sm font-medium text-gray-600 mb-2">
+                Verification
+              </p>
+              <div className="flex gap-3">
+                {["Verified", "Unverified"].map((status) => (
+                  <button
+                    key={status}
+                    onClick={() =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        verified:
+                          status === "Verified"
+                            ? prev.verified === true
+                              ? null
+                              : true
+                            : prev.verified === false
+                            ? null
+                            : false,
+                      }))
+                    }
+                    className={`px-4 py-2 rounded-full text-sm border shadow-sm ${
+                      (status === "Verified" && filters.verified === true) ||
+                      (status === "Unverified" && filters.verified === false)
+                        ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+                        : "bg-gray-50 text-gray-700"
+                    }`}
+                  >
+                    {status}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Languages */}
+            <div className="mb-6">
+              <p className="text-sm font-medium text-gray-600 mb-2">Languages</p>
+              <div className="flex flex-wrap gap-2">
+                {["English", "Hindi", "Bengali", "Tamil", "Telugu"].map(
+                  (lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => toggleLanguage(lang)}
+                      className={`px-4 py-2 rounded-full text-sm border shadow-sm ${
+                        filters.languages.includes(lang)
+                          ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+                          : "bg-gray-50 text-gray-700"
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex justify-between gap-4">
+              <button
+                onClick={resetFilters}
+                className="w-1/2 py-3 rounded-lg border border-gray-300 text-gray-600 font-medium hover:bg-gray-50"
+              >
+                Reset
+              </button>
+              <button
+                onClick={applyFilters}
+                className="w-1/2 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md hover:shadow-lg"
+              >
+                Apply
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Navbar />
     </>
